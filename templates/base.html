@@ -9,43 +9,40 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
-    <title>Book Review </title>
+    <title>Book Review</title>
 </head>
 <body>
 
-    <header>
-          <!-- top nav bar -->
-        <nav class="nav-extend text-shadow #6d4c41 brown darken-1">
-            <div class="nav-wrapper">
-                <a href="{{url_for('get_recommendations')}}" class="brand-logo"> Book Review</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{url_for('get_recommendations')}}">Home</a></li>
-                    <li><a href="#">Location</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Gift shop</a></li>
-                    <li><a href="#">blank</a></li>
-                    <li><a href="#">blank</a></li>
-                    
-                </ul>
-            </div>
-            </nav>
-         
-             <!-- mobile sidenav -->
-          <ul class="sidenav" id="mobile-demo">
-              <li><h4 class="center-algin light-blue-text text-darken-4">Book Review </h4></li>
-            <li><a href="{{url_for('get_recommendations')}}">Home</a></li>
-            <li><a href="#">Location</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Gift shop</a></li>
-            <li><a href="#">blank</a></li>
-            <li><a href="#">blank</a></li>
-            
-          </ul>
-                  
-    </header>
+	<header>
+        <!-- top navbar -->
+		<nav class="nav-extended text-shadow light-blue darken-1">
+			<div class="nav-wrapper">
+				<a href="{{ url_for('get_recommendations') }}" class="brand-logo">Book Review</a>
+				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="{{ url_for('get_recommendations') }}">Home</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">New Task</a></li>
+					<li><a href="#">Manage Categories</a></li>
+					<li><a href="#">Log Out</a></li>
+					<li><a href="#">Log In</a></li>
+					<li><a href="{{ url_for('register') }}">Register</a></li>
+				</ul>
+			</div>
+		</nav>
+
+        <!-- mobile sidenav -->
+		<ul class="sidenav" id="mobile-demo">
+            <li><h4 class="center-align light-blue-text text-darken 4">Book Review </h4></li>
+            <li><a href="{{ url_for('get_recommendations') }}">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">New Task</a></li>
+            <li><a href="#">Manage Categories</a></li>
+            <li><a href="#">Log Out</a></li>
+            <li><a href="#">Log In</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+		</ul>
+	</header>
 
     {% block content %}
     {% endblock %}
