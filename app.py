@@ -98,6 +98,12 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/add_task")
+def add_task():
+    return render_template("add_task.html")
+
+
+
 
 
 
