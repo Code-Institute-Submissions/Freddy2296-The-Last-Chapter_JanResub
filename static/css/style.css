@@ -14,3 +14,7 @@
    margin: 5px;
    line-height: 42px;
 }
+
+body {
+   background: black url("https://www.fairfaxstatic.com.au/etc/designs/ffx/cq-site-clientlibs-designs-good-food/css/img/gf-social-home.jpg") no-repeat fixed center;
+ }
