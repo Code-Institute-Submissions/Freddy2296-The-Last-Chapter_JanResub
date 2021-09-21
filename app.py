@@ -193,6 +193,10 @@ def delete_category(category_id):
     return redirect(url_for("get_categories"))
 
 
+@app.route("/home")
+def home():
+     return render_template("home.html", home=home)
+
 
 
 
