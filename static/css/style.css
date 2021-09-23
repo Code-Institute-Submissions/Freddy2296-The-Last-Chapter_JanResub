@@ -1,4 +1,10 @@
+.table-of-contents {
+  letter-spacing: 0.4px;
+}
+
+
 .text-shadow {
+
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -17,9 +23,7 @@
 
 }
 
-.table-of-contents {
-  letter-spacing: 0.4px;
-}
+
 
 body {
    background: url("https://www.fairfaxstatic.com.au/etc/designs/ffx/cq-site-clientlibs-designs-good-food/css/img/gf-social-home.jpg") no-repeat fixed center;
