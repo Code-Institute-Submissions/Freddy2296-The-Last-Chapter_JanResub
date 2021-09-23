@@ -14,6 +14,11 @@
 .collapsible-header .col strong {
    margin: 5px;
    line-height: 42px;
+
+}
+
+.table-of-contents {
+  letter-spacing: 0.4px;
 }
 
 body {
