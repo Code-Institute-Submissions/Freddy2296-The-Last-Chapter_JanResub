@@ -23,6 +23,10 @@ Built for Milestone Project no.4 in the Full Stack Software Development bootcamp
 * see the ingredients for a selected recipe
 This site was built on the basis of ideas from initial wireframes created in Adobe XD and exported image files for these can be seen below. These image files as well as the XD project file can be found in the main project folder:
 
+![alt text](https://dujeb9m.sharing.bublup.com/ui/landing_page?item_id=001-i-b30e2483-38f6-44ad-9037-1124d56cdd72 "Logo Title Text 1")
+
+![alt text](https://dujeb9m.sharing.bublup.com/ui/landing_page?item_id=001-i-49c3aba5-789c-4c91-9715-52f7c30e0bb0 "Logo Title Text 1")
+
 
 ## Design 
 
