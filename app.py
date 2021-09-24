@@ -25,6 +25,7 @@ def get_tasks():
     return render_template("tasks.html", tasks=tasks)
 
 
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
@@ -151,6 +152,7 @@ def delete_task(task_id):
     mongo.db.tasks.remove({"_id": ObjectId(task_id)})
     flash("Task Successfully Deleted")
     return redirect(url_for("get_tasks"))
+
 
 
 @app.route("/get_categories")

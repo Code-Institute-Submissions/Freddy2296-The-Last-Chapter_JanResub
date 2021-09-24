@@ -161,7 +161,7 @@ Had trouble with the mongodb but managed to make it work so the pages looks nice
 GitHub was used for version control throught the development of the application and to host the code by pushing all code to the repo on GitHub.
 
 This project was then deployed to Heroku to host the live application, following the steps below:
-1. Log in to [Herkou]()and create a new app called 'last-chapter-project'
+1. Log in to [Herkou](https://id.heroku.com/login)and create a new app called 'last-chapter-project'
 
 2. Log in to Heroku in the CLI
 3. Add the remote Heroku repo
@@ -183,6 +183,7 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 ### Code
 * Bootstrap4: Bootstrap Library used throughout the project mainly to make site responsive using the Bootstrap Grid System.
 * The concept for this cook book came mostly from the mini project on code institute thanks to them and their task manger i was able to built my own search functionality and make it my own, also kes2401 was a big help his own cookbook gave me ideas for mine.
+* I would like to Aknowledge both Code Institute and Kes2401 for the help and great learning experience it was learning form both.
 
 
 
