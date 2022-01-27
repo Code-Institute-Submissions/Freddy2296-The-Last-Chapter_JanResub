@@ -12,7 +12,7 @@
                     <label for="query">Search Recipes</label>
                 </div>
                 <div class="col s12 m4">
-                    <a href="{{ url_for('get_recipes') }}" class="aquamarine btn text-shadow">Reset</a>
+                    <a href="{{ url_for('get_recipe') }}" class="aquamarine btn text-shadow">Reset</a>
                     <button type="submit" class="aquamarine-text darken-1 btn text-shadow">
                         <i class="fas fa-search left"></i> Search 
                     </button>
@@ -23,28 +23,28 @@
 
     {% if recipes|length > 0 %}
     <ul class="collapsible">
-        {% for recipes in recipes %}
+        {% for recipe in recipes %}
         <li>
             <div class="collapsible-header white-text dark green darken-4 text-shadow">
                 <div class="col s3">
                     <i class="fas fa-caret-down"></i>
-                    {% if session.user|lower == recipes.created_by|lower %}
-                        <a href="{{ url_for('delete_recipes', recipe_id=recipe._id) }}" class="btn-small green accent-4">Done</a>
-                        <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn-small light-blue lighten-1">Edit</a>
+                    {% if session.user|lower == recipe.created_by|lower %}
+                        <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="btn-small green accent-4">Done</a>
+                        <a href="{{ url_for('edit_recipes', recipe_id=recipe._id) }}" class="btn-small light-blue lighten-1">Edit</a>
                     {% endif %}
                 </div>
                 <div class="col s9">
-                    <strong>{{ recipes.recipes_name }}</strong> : {{ recipes.due_date }}
-                    {% if recipes.is_urgent == "on" %}
+                    <strong>{{ recipes.recipe_name }}</strong> : {{ recipe.due_date }}
+                    {% if recipe.is_urgent == "on" %}
                         <i class="fas fa-exclamation-circle aquamarine-text text-lighten-2 tooltipped"
                             data-position="right" data-tooltip="URGENT!"></i>
                     {% endif %}
                 </div>
             </div>
             <div class="collapsible-body">
-                <strong>{{ recipes.category_name }}</strong>
-                <p>{{ recipes.recipes_description }}</p>
-                <p><em>by: {{ recipes.created_by }}</em></p>
+                <strong>{{ recipe.category_name }}</strong>
+                <p>{{ recipe.recipe_description }}</p>
+                <p><em>by: {{ recipe.created_by }}</em></p>
             </div>
         </li>
         {% endfor %}

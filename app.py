@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 
 @app.route("/")
 @app.route("/get_recipes")
-def get_recipes():
+def get_recipe():
     recipes = list(mongo.db.recipes.find())
     return render_template("recipes.html", recipes=recipes)
 
@@ -108,7 +108,7 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_recipe", methods=["GET", "POST"])
+@app.route("/add_recipes", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
         is_urgent = "on" if request.form.get("is_urgent") else "off"
@@ -120,16 +120,16 @@ def add_recipe():
             "required_tools": request.form.get("required_tools"),
             "created_by": session["user"]
         }
-        mongo.db.recipes.insert_one(recipe)
+        mongo.db.recipes.insert_one(recipes)
         flash("Recipe Successfully Added")
         return redirect(url_for("get_recipes"))
 
     categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("add_recipe.html", categories=categories)
+    return render_template("add_recipes.html", categories=categories)
 
 
-@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
-def edit_recipe(recipe_id):
+@app.route("/edit_recipes/<recipe_id>", methods=["GET", "POST"])
+def edit_recipes(recipe_id):
     if request.method == "POST":
         is_urgent = "on" if request.form.get("is_urgent") else "off"
         submit = {
@@ -140,19 +140,19 @@ def edit_recipe(recipe_id):
             "required_tools": request.form.get("required_tools"),
             "created_by": session["user"]
         }
-        mongo.db.recipe.update({"_id": ObjectId(recipe_id)}, submit)
+        mongo.db.recipe.update({"_id": ObjectId(recipes_id)}, submit)
         flash("Recipe Successfully Updated")
 
-    recipe = mongo.db.recipe.find_one({"_id": ObjectId(task_id)})
+    recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("edit_recipes.html", recipe=recipe, categories=categories)
 
 
-@app.route("/delete_recipes/<recipes_id>")
-def delete_recipes(recipe_id):
+@app.route("/delete_recipe/<recipe_id>")
+def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     flash("Recipe Successfully Deleted")
-    return redirect(url_for("get_recipes"))
+    return redirect(url_for("get_recipe"))
 
 
 
