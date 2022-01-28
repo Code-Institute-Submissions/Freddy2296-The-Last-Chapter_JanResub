@@ -1,71 +1,118 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="aquamarine-text text-darken-4 center-align">Add Recipe </h3>
+<h3 class="white-text text-darken-4 center-align">Add your own recipe!</h3>
 
-    <div class="row card-panel grey lighten-5">
-        <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
-            <!-- category selection -->
-			<div class="row">
-				<div class="input-field col s12">
-                    <i class="fas fa-folder-open prefix aquamarine-text text-darken-4"></i>
-					<select id="category_name" name="category_name" class="validate" required>
-                        <option value="" disabled selected>Choose Category</option>
-                        {% for category in categories %}
-                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                        {% endfor %}
-                    </select>
-					<label for="category_name"> Category</label>
-				</div>
-			</div>
-            <!-- task name -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-pencil-alt prefix aquamarine-text text-darken-4"></i>
-                    <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50"
-                        type="text" class="validate" required>
-                    <label for="recipe_name">Recipe Name</label>
-                </div>
+<div class="row card-panel grey lighten-5">
+    <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
+        <!--Recipe Category-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-folder-open prefix text-darken-4"></i>
+                <select id="category_name" name="category_name" class="validate" required>
+                    <option value="" disabled selected>Choose your recipe type</option>
+                    {% for category in categories %}
+                        <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="category_name">Recipe Category</label>
             </div>
-            <!-- task description -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-align-left prefix aquamarine-text text-darken-4"></i>
-                    <textarea id="recipe_description" name="recipe_description" minlength="5"
-                        maxlength="500" class="materialize-textarea validate" required></textarea>
-                    <label for="recipe_description">Description</label>
-                </div>
+        </div>
+        <!--Recipe Name-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix text-darken-4"></i>
+                <textarea id="recipe_name" name="recipe_name" minlength="5" maxlength="30" 
+                type="text" class="materialize-textarea validate" required></textarea>
+                <label for="recipe_name">Recipe Name</label>
             </div>
-            <!-- due date picker -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-calendar-alt prefix aquamarine-text text-darken-4"></i>
-                    <input id="due_date" name="due_date" type="text" class="datepicker validate" required>
-                    <label for="due_date">Due Date</label>
-                </div>
+        </div>
+
+        <!--Description-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-pen prefix text-darken-4"></i>
+                <input id="description" name="description" type="text" class="validate">
+                <label for="description">Description</label>
             </div>
-            <!-- is urgent toggle -->
-			<div class="row">
-				<div class="input-field col s12">
-					<div class="switch">
-                        <i class="fas fa-exclamation-circle prefix aquamarine-text text-darken-4"></i>
-						<label for="is_urgent">
-                            <input type="checkbox" id="is_urgent" name="is_urgent">
-                            <span class="lever"></span>
-                            Is Urgent
-                        </label>
-					</div>
-				</div>
-			</div>
-            <!-- submit button -->
+        </div>
+
+        <!--Image url-->
             <div class="row">
-                <div class="col s12 center-align">
-                    <button type="submit" class="btn-large aquamarine-text darken-1 text-shadow">
-                        Add Recipe <i class="fas fa-plus-square right"></i>
-                    </button>
-                </div>
+            <div class="input-field col s12">
+                <i class="fas fa-camera prefix text-darken-4"></i>
+                <input id="img_url" name="img_url" type="text" class="validate">
+                <label for="img_url">Enter image url here</label>
             </div>
-        </form>
-    </div>
+        </div>
+
+        <!-- Prep Time Input-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-clock prefix text-darken-4"></i>
+                <input id="prep_time" name="prep_time" type="text" class="validate">
+                <label for="prep_time">Preparation Time</label>
+            </div>
+        </div>
+
+        <!--Cook Time Input-->
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-temperature-high prefix text-darken-4"></i>
+                <input id="cook_time" name="cook_time" type="text" class="validate">
+                <label for="cook_time">Cooking Time</label>
+            </div>
+        </div>
+
+        <!--Ingredients-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-utensils prefix text-darken-4"></i>
+                <input id="ingredients" name="ingredients" type="text" class="validate">
+                <label for="ingredients">Recipe Ingredients</label>
+            </div>
+        </div>
+
+        <!--Recipe method-->
+
+        <div class="row">
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header prefix"><i class="fas fa-arrow-down prefix black-text text-darken-4"></i>Click to enter your how to steps!</div>
+                <div class="collapsible-body"><span>
+
+                <input id="method_1" name="method_1" type="text" class="validate" placeholder="1:" required>
+                <label for="method_1">Enter step one: </label>
+
+                <input id="method_2" name="method_2" type="text" class="validate" placeholder="2:">
+                <label for="method_2">Enter step two: </label>
+
+                <input id="method_3" name="method_3" type="text" class="validate" placeholder="3:">  
+                <label for="method_3">Enter step three: </label>
+                
+                <input id="method_4" name="method_4" type="text" class="validate" placeholder="4:">
+                <label for="method_4">Enter step four: </label>
+
+                <input id="method_5" name="method_5" type="text" class="validate" placeholder="5:">
+                <label for="method_5">Enter step five:</label>
+            
+            </span>
+        </div>
+            </li>
+        </ul>
+        </div>
+
+
+        <!--Submit button-->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large green darken-1 text-shadow">
+                    Add Recipe <i class="fas fa-plus-square right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 
 {% endblock %}

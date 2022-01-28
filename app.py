@@ -18,6 +18,10 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+@app.route("/")
+def index():
+    return render_template("index.html")
+
 
 @app.route("/")
 @app.route("/get_recipes")
@@ -37,7 +41,7 @@ def search():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        # check if username already exists in db
+        # checks if username already exists in database
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -55,9 +59,7 @@ def register():
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
         return redirect(url_for("profile", username=session["user"]))
-
     return render_template("register.html")
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -108,24 +110,26 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_recipes", methods=["GET", "POST"])
+@app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
-        is_urgent = "on" if request.form.get("is_urgent") else "off"
-        recipes = {
+        recipe = {
             "category_name": request.form.get("category_name"),
             "recipe_name": request.form.get("recipe_name"),
-            "recipe_ingredients": request.form.get("recipe_ingredients"),
-            "recipe_preparation": request.form.get("recipe_preparation"),
-            "required_tools": request.form.get("required_tools"),
+            "img_url": request.form.get("img_url"),
+            "ingredients": request.form.get("ingredients"),
+            "prep_time": request.form.get("prep_time"),
+            "cook_time": request.form.get("cook_time"),
+            "description": request.form.get("description"),
             "created_by": session["user"]
         }
-        mongo.db.recipes.insert_one(recipes)
-        flash("Recipe Successfully Added")
+        mongo.db.recipes.insert_one(recipe)
+        flash("Recipe Successfully Added.")
         return redirect(url_for("get_recipes"))
 
-    categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("add_recipes.html", categories=categories)
+    categories = mongo.db.categories.find().sort("recipe_type", 1)
+    return render_template("add_recipe.html", categories=categories)
+
 
 
 @app.route("/edit_recipes/<recipe_id>", methods=["GET", "POST"])

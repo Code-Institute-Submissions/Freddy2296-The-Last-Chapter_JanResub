@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="intro">
+    <div class="inner">
+        <div class="content">
+            <section class="animate__animated animate__bounce" data-os-animation-delay="0s">
+                <h1 class="landing-header"><i class="fas fa-hamburger white-text large"></i>
+                    <br>
+                    Snacc
+                </h1>
+                <p>The easiest way to store all of your favourite recipes.</p>
+            </section>
+            <br>
+            <section class="animate__animated animate__bounce" data-os-animation-delay=".1s">
+                <a class="btn-landing" href="{{ url_for('register') }}">SIGN UP</a>
+            </section>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
