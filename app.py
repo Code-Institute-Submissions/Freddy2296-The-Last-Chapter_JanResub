@@ -29,19 +29,19 @@ def get_recipe():
     recipes = list(mongo.db.recipes.find())
     return render_template("recipes.html", recipes=recipes)
 
-    @app.route("/breakfast")
+@app.route("/breakfast")
 def breakfast():
-    recipes = list(mongo.db.recipes.find())
-    return render_template("breakfast.html", recipes=recipes)
+     recipes = list(mongo.db.recipes.find())
+     return render_template("breakfast.html", recipes=recipes)
 
 
-    @app.route("/lunch")
+@app.route("/lunch")
 def lunch():
     recipes = list(mongo.db.recipes.find())
     return render_template("lunch.html", recipes=recipes)
 
 
-    @app.route("/dinner")
+@app.route("/dinner")
 def dinner():
     recipes = list(mongo.db.recipes.find())
     return render_template("dinner.html", recipes=recipes)
