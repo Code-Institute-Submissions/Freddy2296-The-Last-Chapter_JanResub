@@ -10,17 +10,32 @@
 </div>
 
 
-<div class="card">
-    <img src="https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-vector-avatar-icon-png-image_695765.jpg" alt="John" style="width:100%">
-    
-    <p class="title"> Hello this my profile </p>
-    <p>Harvard University</p>
-    <a href="https://dribbble.com/"><i class="fa fa-dribbble"></i></a>
-    <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
-    <a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a>
-    <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-    
-  </div>
+<h3 class="center-align white-text text-shadow text-darken-4">Welcome !</h3>
 
+<section class="intro">
+    <div class="inner">
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <div class="card-panel transparent">
+                <h3 class="center-align white-text text-shadow text-darken-4">
+                    You are logged in as: 
+                    <br>
+                    {{ username }}
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <p class="center-align white-text">
+                All cooked out ? 
+                <br>
+                <a href="{{ url_for('logout') }}" class="white-text text-darken"><i class="fas fa-user-plus"></i> Log Out</a>
+            </p>
+        </div>
+    </div>
+</div>
+</section>
 
 {% endblock %}

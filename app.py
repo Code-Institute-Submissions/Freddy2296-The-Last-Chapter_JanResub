@@ -29,13 +29,37 @@ def get_recipe():
     recipes = list(mongo.db.recipes.find())
     return render_template("recipes.html", recipes=recipes)
 
+    @app.route("/breakfast")
+def breakfast():
+    recipes = list(mongo.db.recipes.find())
+    return render_template("breakfast.html", recipes=recipes)
+
+
+    @app.route("/lunch")
+def lunch():
+    recipes = list(mongo.db.recipes.find())
+    return render_template("lunch.html", recipes=recipes)
+
+
+    @app.route("/dinner")
+def dinner():
+    recipes = list(mongo.db.recipes.find())
+    return render_template("dinner.html", recipes=recipes)
+
+
+@app.route("/beverages")
+def beverages():
+    recipes = list(mongo.db.recipes.find())
+    return render_template("beverages.html", recipes=recipes)
+
+
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    return render_template("recipes.html", recipes=recipes)
+    return render_template("recipes.html", recipe=recipe)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -89,7 +113,7 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
+@app.route("/profile/ <username>", methods=["GET", "POST"])
 def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
