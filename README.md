@@ -166,7 +166,6 @@ the user can view all associated data with that recipe ranging from recipe name,
 
 Admin may delete/update any recipe on the database
 Registered users will only see the delete button for recipes they have submitted.
-![Admin](static/img/admin_delete.PNG)
 
 
 
