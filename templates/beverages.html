@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="white-text text-darken-4 center-align text-shadow">All Recipes</h3>
+<h3 class="white-text text-darken-4 center-align text-shadow">Beverages</h3>
 
 <div class="row card-panel lighten-5">
     <form action="{{ url_for('search') }}" method="POST" class="col s12">
@@ -26,22 +26,22 @@
 <ul class="pagination center-align">
 
     <li class="waves-effect"><a href="{{ url_for('get_recipe') }}">All</a></li>
-    <li class="waves-effect"><a href="{{ url_for('breakfast') }}">Breakfast</a></li>
-    <li class="waves-effect"><a href="{{ url_for('lunch') }}">Lunch</a></li>
-    <li class="waves-effect"><a href="{{ url_for('dinner') }}">Dinner</a></li>
-    <li class="waves-effect"><a href="{{ url_for('beverages') }}">Beverages</a></li>
+    <li class="waves-effect white-text"><a href="{{ url_for('breakfast') }}">Breakfast</a></li>
+    <li class="waves-effect white-text"><a href="{{ url_for('lunch') }}">Lunch</a></li>
+    <li class="waves-effect white-text"><a href="{{ url_for('dinner') }}">Dinner</a></li>
+    <li class="waves-effect white-text"><a href="{{ url_for('beverages') }}">Beverages</a></li>
 
 </ul>
 
 <section>
         <div class="row card-panel transparent">
             {% for recipe in recipes %}
+            {% if recipe.category_name == "Beverages" %}
             <!--Returns every second recipe in DB to first column-->
-            {% if loop.index % 2 != 0 %}
-            <div class="col s12 m6 l6">
+                <div class="col s12">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator food-images" src="{{ recipe.img_url }}" alt="food-image">
+                        <img class="activator food-images" src="{{ recipe.img_url }}" alt="food-images">
                         <span class="card-title text-shadow">{{ recipe.category_name }}
                             <br>
                             <strong>{{ recipe.recipe_name }}</strong>
@@ -50,51 +50,6 @@
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4"><i
                                 class="fas fa-expand left"></i>Click for more!</span>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><b>{{ recipe.recipe_name}}</b><i
-                                class="fas fa-times right"></i></span>
-                        <p><b>Preparation Time:</b> {{ recipe.prep_time }} </p>
-                        <p><b>Cooking Time:</b> {{ recipe.cook_time }} </p>
-
-                        <p><b>Description:</b> {{ recipe.description }} </p>
-
-                        <p><b>Ingredients:</b> {{ recipe.ingredients }}</p>
-                        <p><b>Preparation: </b></p>
-                        <p><b>1:</b> {{ recipe.method_1 }}</p>
-                        <p><b>2:</b> {{ recipe.method_2 }}</p>
-                        <p><b>3:</b> {{ recipe.method_3 }}</p>
-                        <p><b>4:</b> {{ recipe.method_4 }}</p>
-                        <p><b>5:</b> {{ recipe.method_5 }}</p>
-                        <br>
-                        <em>Created by: {{ recipe.created_by }}</em>
-                        <div class="card-action">
-                            {% if session.user|lower == recipe.created_by|lower or session.user == "admin" %}
-                            <a href="{{ url_for('edit_recipes', recipe_id=recipe._id) }}"
-                                class="btn-small light-blue darken-1 text-shadow">Edit</a>
-                            <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}"
-                                onclick="return confirm('Are you sure you want to delete this recipe?')"
-                                class="btn-small red accent darken-1 text-shadow">Delete</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m6 l6">
-                <div class="card">
-            {% else %}
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator food-images" src="{{ recipe.img_url }}" alt="food-image">
-                        <span class="card-title text-shadow">{{ recipe.category_name }}
-                            <br>
-                            <strong>{{ recipe.recipe_name }}</strong>
-                        </span>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><i
-                                class="fas fa-expand left"></i>Click for
-                            more!</span>
                         <p></p>
                     </div>
                     <div class="card-reveal">
@@ -102,7 +57,9 @@
                                 class="fas fa-times right"></i></span>
                         <p><b>Preparation Time:</b> {{ recipe.prep_time }} </p>
                         <p><b>Cooking Time:</b> {{ recipe.cook_time }} </p>
+
                         <p><b>Description:</b> {{ recipe.description }} </p>
+
                         <p><b>Ingredients:</b> {{ recipe.ingredients }}</p>
                         <p><b>Preparation: </b></p>
                         <p><b>1:</b> {{ recipe.method_1 }}</p>
@@ -114,7 +71,7 @@
                         <em>Created by: {{ recipe.created_by }}</em>
                         <div class="card-action">
                             {% if session.user|lower == recipe.created_by|lower or session.user == "admin" %}
-                            <a href="{{ url_for('edit_recipes', recipe_id=recipe._id) }}"
+                            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"
                                 class="btn-small light-blue darken-1 text-shadow">Edit</a>
                             <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}"
                                 onclick="return confirm('Are you sure you want to delete this recipe?')"
@@ -127,7 +84,7 @@
             {% endif %}
             {% endfor %}
         </div>
-
+        
 {% else %}
 <h3 class="red-text text-darken-4 center-align text-shadow">No Results Found</h3>
 {% endif %}
