@@ -17,6 +17,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+mongo.db.recipes.create_index([('category_name', 'text'), ('recipe_name', 'text')])
+
 
 @app.route("/")
 def index():
@@ -53,13 +55,15 @@ def beverages():
     return render_template("beverages.html", recipes=recipes)
 
 
-
-
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
     return render_template("recipes.html", recipes=recipes)
+
+
+
+
 
 
 @app.route("/register", methods=["GET", "POST"])
