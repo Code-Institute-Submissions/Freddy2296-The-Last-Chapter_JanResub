@@ -256,8 +256,8 @@ Registered users will only see the delete button for recipes they have submitted
 
 I've created several of my own personal accounts through the development process in order to confirm authentication and validation worked as expected, along with the master *admin* account.
 I have tested by also registering using a username that already exists in the database to ensure further authentication & validation.
-Friends using the website have let me know they did not have any issues with registering a unique account
-![create_user](static/img/createuser.PNG)
+[Create User](https://dujeb9m.sharing.bublup.com/ui/landing_page?item_id=001-i-252db0cc-9249-45a0-8ecc-187e2638e859)
+
 
 **Add | Edit | Delete a Recipe**
 
@@ -304,7 +304,7 @@ using "{% extends "base.html" %}{% block content %}{% endblock %}.
 **CSS**
 - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - I have 1 parsing errors when I run the code through this validator, however every single parsing error is due to the validator not
 recognizing elements imported using [AnimateCSS](https://animate.style/) & [MaterializeCSS](https://materializecss.com/). Aside from this, the CSS code is validating fine.
-![css_parse_errors](static/img/cssvalidatorerrors.png)
+[Css errors](https://dujeb9m.sharing.bublup.com/ui/landing_page?item_id=001-i-7912207c-4360-4b9c-ba37-dbc0f3a31b38)
 
 **JavaScript**
 - [JShint](https://jshint.com/)
