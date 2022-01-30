@@ -31,8 +31,8 @@ def get_recipe():
 
 @app.route("/breakfast")
 def breakfast():
-     recipes = list(mongo.db.recipes.find())
-     return render_template("breakfast.html", recipes=recipes)
+    recipes = list(mongo.db.recipes.find())
+    return render_template("breakfast.html", recipes=recipes)
 
 
 @app.route("/lunch")
@@ -59,7 +59,7 @@ def beverages():
 def search():
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    return render_template("recipes.html", recipe=recipe)
+    return render_template("recipes.html", recipes=recipes)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -143,6 +143,11 @@ def add_recipe():
             "ingredients": request.form.get("ingredients"),
             "prep_time": request.form.get("prep_time"),
             "cook_time": request.form.get("cook_time"),
+            "method_1": request.form.get("method_1"),
+            "method_2": request.form.get("method_2"),
+            "method_3": request.form.get("method_3"),
+            "method_4": request.form.get("method_4"),
+            "method_5": request.form.get("method_5"),
             "description": request.form.get("description"),
             "created_by": session["user"]
         }
@@ -223,50 +228,6 @@ def dinner_categories():
 def beverage_categories():
     recipes = list(mongo.db.recipes.find().sort("category_name", 1))
     return render_template("beverage_categories.html", recipes=recipes)
-
-
-
-
-@app.route("/add_category", methods=["GET", "POST"])
-def add_category():
-    if request.method == "POST":
-        category = {
-            "category_name": request.form.get("category_name")
-        }
-        mongo.db.categories.insert_one(category)
-        flash("New Category Added")
-        return redirect(url_for("get_categories"))
-
-    return render_template("add_category.html")
-
-
-@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
-def edit_category(category_id):
-    if request.method == "POST":
-        submit = {
-            "category_name": request.form.get("category_name")
-        }
-        mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
-        flash("Category Successfully Updated")
-        return redirect(url_for("get_categories"))
-
-    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
-    return render_template("edit_category.html", category=category)
-
-
-@app.route("/delete_category/<category_id>")
-def delete_category(category_id):
-    mongo.db.categories.remove({"_id": ObjectId(category_id)})
-    flash("Category Successfully Deleted")
-    return redirect(url_for("get_categories"))
-
-
-@app.route("/home")
-def home():
-     return render_template("home.html", home=home)
-
-
-
 
 
 if __name__ == "__main__":
