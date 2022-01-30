@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="white-text text-darken-4 center-align">Edit Recipe</h3>
+
+<div class="row card-panel grey lighten-5">
+    <form class="col s12" method="POST" action="">
+        <!--Recipe Category-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-folder-open prefix black-text text-darken-4"></i>
+                <select id="category_name" name="category_name" class="validate" required>
+                    <option value="" disabled>Choose your recipe type</option>
+                    {% for category in categories %}
+                        {% if category.category_name == recipe.category_name %}
+                            <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                        {% else %}
+                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <label for="category_name">Recipe Category</label>
+            </div>
+        </div>
+        <!--Recipe Name-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-align-left prefix black-text text-darken-4"></i>
+                <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50" value="{{ recipe.recipe_name }}"
+                type="text" class="materialize-textarea validate" required>
+                <label for="recipe_name">Recipe Name</label>
+            </div>
+        </div>
+
+        <!--Recipe Description-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-pen prefix black-text text-darken-4"></i>
+                <input id="description" name="description" type="text" value="{{ recipe.description }}" class="validate">
+                <label for="description">Description</label>
+            </div>
+        </div>
+
+        <!--Image url-->
+            <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-camera prefix black-text text-darken-4"></i>
+                <input id="img_url" name="img_url" type="text" class="validate" value="{{ recipe.img_url }}">
+                <label for="img_url">Enter image url here</label>
+            </div>
+        </div>
+
+        <!-- Prep Time Input-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-clock prefix black-text text-darken-4"></i>
+                <input id="prep_time" name="prep_time" type="text" class="validate" value="{{ recipe.prep_time }}">
+                <label for="prep_time">Preparation Time</label>
+            </div>
+        </div>
+
+        <!--Cook Time Input-->
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-temperature-high prefix black-text text-darken-4"></i>
+                <input id="cook_time" name="cook_time" type="text" value="{{ recipe.cook_time }}" class="validate">
+                <label for="cook_time">Cooking Time</label>
+            </div>
+        </div>
+
+        <!--Ingredients-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-utensils prefix black-text text-darken-4"></i>
+                <input id="ingredients" name="ingredients" type="text" value="{{ recipe.ingredients }}" class="validate">
+                <label for="ingredients">Recipe Ingredients</label>
+            </div>
+        </div>
+
+        <!--Recipe method-->
+
+        <div class="row">
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header prefix black-text text-darken-4"><i class="fas fa-arrow-down prefix black-text text-darken-4"></i>Click to edit your how to steps!</div>
+                <div class="collapsible-body"><span>
+
+                <input id="method_1" name="method_1" type="text" value="{{ recipe.method_1 }}" class="validate" placeholder="1:">
+                <label for="method_1">Enter step one: </label>
+
+                <input id="method_2" name="method_2" type="text" value="{{ recipe.method_2 }}" class="validate" placeholder="2:">
+                <label for="method_2">Enter step two: </label>
+
+                <input id="method_3" name="method_3" type="text" value="{{ recipe.method_3 }}" class="validate" placeholder="3:">  
+                <label for="method_3">Enter step three: </label>
+                
+                <input id="method_4" name="method_4" type="text" value="{{ recipe.method_4 }}" class="validate" placeholder="4:">
+                <label for="method_4">Enter step four: </label>
+
+                <input id="method_5" name="method_5" type="text" value="{{ recipe.method_5 }}" class="validate" placeholder="5:">
+                <label for="method_5">Enter step five:</label>
+            
+            </span>
+        </div>
+            </li>
+        </ul>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12 center-align">
+                <!--Cancel Button-->
+                <a href="{{ url_for('get_recipe') }}" class="btn-large red darken-1 text-shadow">
+                    Cancel <i class="fas fa-times-circle right"></i>
+                </a>
+                <!--Edit button-->
+                <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+                    Update <i class="fas fa-edit right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
