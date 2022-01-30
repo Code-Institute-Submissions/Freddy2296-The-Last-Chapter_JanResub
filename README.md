@@ -257,7 +257,7 @@ Registered users will only see the delete button for recipes they have submitted
 I've created several of my own personal accounts through the development process in order to confirm authentication and validation worked as expected, along with the master *admin* account.
 I have tested by also registering using a username that already exists in the database to ensure further authentication & validation.
 Friends using the website have let me know they did not have any issues with registering a unique account
-![create_account_testing](static/img/createuser.PNG)
+![create_user](static/img/createuser.PNG)
 
 **Add | Edit | Delete a Recipe**
 
