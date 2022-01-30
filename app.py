@@ -189,6 +189,34 @@ def get_categories():
     return render_template("categories.html", categories=categories)
 
 
+    # Manage breakfast recipes
+@app.route("/breakfast_categories")
+def breakfast_categories():
+    recipes = list(mongo.db.recipes.find().sort("category_name", 1))
+    return render_template("breakfast_categories.html", recipes=recipes)
+
+
+# Manage lunch recipes
+@app.route("/lunch_categories")
+def lunch_categories():
+    recipes = list(mongo.db.recipes.find().sort("category_name", 1))
+    return render_template("lunch_categories.html", recipes=recipes)
+
+
+@app.route("/dinner_categories")
+def dinner_categories():
+    recipes = list(mongo.db.recipes.find().sort("category_name", 1))
+    return render_template("dinner_categories.html", recipes=recipes)
+
+
+@app.route("/beverage_categories")
+def beverage_categories():
+    recipes = list(mongo.db.recipes.find().sort("category_name", 1))
+    return render_template("beverage_categories.html", recipes=recipes)
+
+
+
+
 @app.route("/add_category", methods=["GET", "POST"])
 def add_category():
     if request.method == "POST":
